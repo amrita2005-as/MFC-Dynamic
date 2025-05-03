@@ -6,11 +6,11 @@
 <body>
   <h1>Sensor Readings</h1>
   <table border="1">
-    <tr><th>Sensor</th><th>Value</th><th>Unit</th><th>Time</th></tr>
+    <tr><th>Sensor</th><th>Value</th><th>Time</th></tr>
     <% data.forEach(row => { %>
       <tr>
         <td><%= row.sensor_name %></td>
-        <td><%= row.value %></td>
+        <td><%= row.values %></td>
         <td><%= new Date(row.timestamp).toLocaleString() %></td>
       </tr>
     <% }) %>
