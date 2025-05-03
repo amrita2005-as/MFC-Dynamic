@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sensor Dashboard</title>
+</head>
+<body>
+  <h1>Sensor Readings</h1>
+  <table border="1">
+    <tr><th>Sensor</th><th>Value</th><th>Unit</th><th>Time</th></tr>
+    <% data.forEach(row => { %>
+      <tr>
+        <td><%= row.sensor_name %></td>
+        <td><%= row.value %></td>
+        <td><%= new Date(row.timestamp).toLocaleString() %></td>
+      </tr>
+    <% }) %>
+  </table>
+  <a href="/">← Back to Welcome</a>
+</body>
+</html>
