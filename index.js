@@ -1,46 +1,90 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import path from "path";
+import { fileURLToPath } from "url";
 
 const app = express();
 const port = 3000;
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// PostgreSQL client setup
 const db = new pg.Client({
   user: "postgres",
   host: "localhost",
-  database: "MFC-Monitoring",
-  password: "------",
-  port: "5432",
+  database: "MFC",
+  password: "IloveVAV", // 🔒 Consider moving this to environment variables!
+  port: 5432,
 });
 
 db.connect();
 
+// Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
+// Home route
 app.get("/", (req, res) => {
-  res.render("index.ejs", { title: "MFC Monitoring" });
+  res.render("index", { title: "MFC Monitoring" });
 });
 
-app.get("/dashboard", async(req,res)=>{
-  try{
-    const data = await db.query("SELECT DISTINCT ON(sensor_name) sensor_name,values,timestamp from mfc ORDER BY sensor_name,timestamp DESC");
-    const data1 = data.rows;
-    /*const sensor_data = {};
-    data1.rows.forEach(i=>{
-      sensor_data[i.sensor_name]={
-        value:i.sensor_value,
-        timestamp:i.timestamp
+// Dashboard route
+app.get("/dashboard", async (req, res) => {
+  try {
+    const result = await db.query("SELECT * FROM mfc_monitoring");
+
+    const timeMap = new Map();
+
+    result.rows.forEach(row => {
+      const timeLabel = new Date(row.timestamp).toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+
+      if (!timeMap.has(timeLabel)) {
+        timeMap.set(timeLabel, { Sensor1: null, Sensor2: null, Sensor3: null });
       }
-    })*/
-    res.render("dashboard.ejs", { data:data1 });
-  }
-  catch{
-    res.status(500).send("Error retrieving data from database.");
+
+      timeMap.get(timeLabel)[row.sensor_name] = row.sensor_value;
+    });
+
+    const sortedEntries = [...timeMap.entries()].sort((a, b) =>
+      new Date(`1970/01/01 ${a[0]}`) - new Date(`1970/01/01 ${b[0]}`)
+    );
+
+    const sensorData = {
+      labels: [],
+      datasets: {
+        Sensor1: [],
+        Sensor2: [],
+        Sensor3: []
+      }
+    };
+
+    sortedEntries.forEach(([timeLabel, sensors]) => {
+      sensorData.labels.push(timeLabel);
+      sensorData.datasets.Sensor1.push(sensors.Sensor1 ?? null);
+      sensorData.datasets.Sensor2.push(sensors.Sensor2 ?? null);
+      sensorData.datasets.Sensor3.push(sensors.Sensor3 ?? null);
+    });
+
+    res.render("dashboard", {
+      title: "Sensor Dashboard",
+      sensorData,
+      data: result.rows
+    });
+
+  } catch (err) {
+    console.error("Database error:", err);
+    res.status(500).send("Error retrieving sensor data.");
   }
 });
 
-app.listen(port,() => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(port, () => {
+  console.log(`✅ Server is running at: http://localhost:${port}`);
 });
