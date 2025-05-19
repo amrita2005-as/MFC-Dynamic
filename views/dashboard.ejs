@@ -1,20 +1,229 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sensor Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0a1f11;
+      color: #d5e8d4;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+
+    header {
+      width: 100%;
+      background-color: #50c878;
+      color: #0a1f11;
+      font-weight: 700;
+      font-size: 2rem;
+      text-align: center;
+      padding: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(80, 200, 120, 0.5);
+      margin-bottom: 40px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 900px;
+      background: #143820;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(80, 200, 120, 0.4);
+      margin-bottom: 50px;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+      border-bottom: 1px solid #224822;
+    }
+
+    th {
+      background-color: #50C878;
+      color: #0a1f11;
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) {
+      background-color: #1e3a23;
+    }
+
+    tr:hover {
+      background-color: #3aa35b;
+      color: #fff;
+      cursor: default;
+    }
+
+    #chart-container {
+      background-color: #143820;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(80, 200, 120, 0.4);
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 60px;
+    }
+
+    a {
+      margin-top: 30px;
+      color: #50C878;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      th, td {
+        padding: 10px 8px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Sensor Readings</h1>
-  <table border="1">
-    <tr><th>Sensor</th><th>Value</th><th>Time</th></tr>
-    <% data.forEach(row => { %>
+  <header>Sensor Monitoring Dashboard</header>
+
+  <!-- Table Section -->
+  <table>
+    <thead>
       <tr>
-        <td><%= row.sensor_name %></td>
-        <td><%= row.values %></td>
-        <td><%= new Date(row.timestamp).toLocaleString() %></td>
+        <th>Sensor</th>
+        <th>Value</th>
+        <th>Time</th>
       </tr>
-    <% }) %>
+    </thead>
+    <tbody>
+      <% data.forEach(row => { %>
+        <tr>
+          <td><%= row.sensor_name %></td>
+          <td><%= row.sensor_value %></td>
+          <td><%= new Date(row.timestamp).toLocaleString() %></td>
+        </tr>
+      <% }) %>
+    </tbody>
   </table>
+
+  <!-- Graph Section -->
+  <section id="chart-container">
+    <canvas id="sensorChart" width="900" height="400"></canvas>
+  </section>
+
   <a href="/">← Back to Welcome</a>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const ctx = document.getElementById('sensorChart').getContext('2d');
+
+    const labels = ["2025-05-19 10:30:00"];
+
+    const datasets = [
+      {
+        label: "Temperature sensor",
+        data: [24.7],
+        backgroundColor: 'rgba(80, 200, 120, 0.7)',
+        borderColor: '#50c878',
+        borderWidth: 2,
+        custom: {
+          What_it_does: "Measures the temperature of the microbial fuel cell environment to ensure optimal conditions for microbial activity."
+        }
+      },
+      {
+        label: "pH sensor",
+        data: [6.8],
+        backgroundColor: 'rgba(200, 80, 80, 0.7)',
+        borderColor: '#c85050',
+        borderWidth: 2,
+        custom: {
+          What_it_does: "Measures the acidity or alkalinity of the slurry to ensure optimal microbial activity, usually between pH 6.5 and 7.5."
+        }
+      },
+      {
+        label: "Weight sensor",
+        data: [124.5],
+        backgroundColor: 'rgba(80, 120, 200, 0.7)',
+        borderColor: '#5078c8',
+        borderWidth: 2,
+        custom: {
+          What_it_does: "Measures the weight of the slurry or biomass inside the fuel cell container to monitor material changes over time."
+        }
+      }
+    ];
+
+    const config = {
+      type: 'bar',
+      data: {
+        labels: labels,
+        datasets: datasets
+      },
+      options: {
+        responsive: true,
+        animation: {
+          duration: 3000,
+          easing: 'easeOutBounce'
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Time',
+              color: '#c6e2c6'
+            },
+            ticks: {
+              color: '#d5e8d4'
+            },
+            grid: {
+              color: 'rgba(80, 200, 120, 0.2)'
+            }
+          },
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Sensor Value',
+              color: '#c6e2c6'
+            },
+            ticks: {
+              color: '#d5e8d4'
+            },
+            grid: {
+              color: 'rgba(80, 200, 120, 0.2)'
+            }
+          }
+        },
+        plugins: {
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                const dataset = context.dataset;
+                const value = context.raw;
+                const description = dataset.custom?.What_it_does || '';
+                return `${dataset.label}: ${value}\n${description}`;
+              }
+            }
+          },
+          legend: {
+            labels: {
+              color: '#c6e2c6'
+            }
+          }
+        }
+      }
+    };
+
+    new Chart(ctx, config);
+  </script>
 </body>
 </html>
