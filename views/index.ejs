@@ -1,24 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Welcome to PowerSprout</title>
+  <meta charset="UTF-8" />
+  <title><%= title %></title>
+  <style>
+    /* General reset & body */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0a1f11;
+      color: #d5e8d4;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      align-items: center;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+
+    /* Header styling */
+    header {
+      width: 100%;
+      background-color: #50c878;
+      color: #0a1f11;
+      font-weight: 700;
+      font-size: 2rem;
+      text-align: center;
+      padding: 20px 0;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(80, 200, 120, 0.5);
+      margin-bottom: 40px;
+    }
+
+    /* Main section */
+    main {
+      width: 100%;
+      max-width: 700px;
+    }
+
+    /* Intro section */
+    .intro {
+      text-align: center;
+      background-color: #143820;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(80, 200, 120, 0.4);
+    }
+
+    .intro-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(80, 200, 120, 0.3);
+    }
+
+    .intro h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #50c878;
+    }
+
+    .intro p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      color: #c6e2c6;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-block;
+      background-color: #50c878;
+      color: #0a1f11;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 12px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(80, 200, 120, 0.5);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #3aa35b;
+      box-shadow: 0 6px 12px rgba(58, 163, 91, 0.7);
+      color: #e6f1e6;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .intro {
+        padding: 20px 15px;
+      }
+
+      .intro h2 {
+        font-size: 1.5rem;
+      }
+
+      .intro p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-
-  <h1>🌱 Welcome to PowerSprout</h1>
-  <p>
-    <strong>PowerSprout</strong> is an IoT-based Microbial Fuel Cell (MFC) monitoring system
-    that tracks key biological and environmental parameters in real-time to ensure optimal energy generation and safe operation.
-  </p>
-  <p>
-    Using sensors for <strong>pH, gas concentration (methane), weight, and temperature</strong>, PowerSprout collects and displays live data
-    from the MFC system. It provides real-time alerts through buzzers and LEDs when safety thresholds are exceeded.
-  </p>
-  <p>
-    The project is designed to support research, automation, and educational insights into how microbial systems can be used for sustainable energy production.
-  </p>
-  <a class="btn" href="/dashboard">→ Go to Live Sensor Dashboard</a>
-
+  <header>Welcome to the MFC Monitoring Dashboard</header>
+  <main>
+    <section class="intro">
+      <img src="../public/image.jpg" alt="MFC System Diagram" class="intro-img">
+      <h2>Monitor Real-Time Sensor Data from Your MFC System</h2>
+      <p>
+        The Microbial Fuel Cell (MFC) technology harnesses the power of bacteria to
+        convert organic waste into clean electricity. This dashboard provides live
+        data from sensors embedded in your MFC setup, helping you optimize performance,
+        track environmental parameters, and ensure sustainable energy generation.
+      </p>
+      <p>
+        By monitoring parameters such as voltage, current, pH levels, and temperature,
+        you can detect changes and troubleshoot issues in real-time, maximizing
+        efficiency and extending the lifespan of your MFC system.
+      </p>
+      <a href="/dashboard" class="btn">Go to Dashboard →</a>
+    </section>
+  </main>
 </body>
 </html>
