@@ -1,0 +1,690 @@
+/* === General Styles === */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom right, #083c4f, #143820);
+  color: #d5e8d4;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* === Fixed Header === */
+.main-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.navbar-logo {
+  width: 60px;
+  filter: drop-shadow(0 0 5px #50c878aa);
+}
+
+/* Center nav-links horizontally */
+.nav-links {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex: 1;
+  margin: 0 20px;
+}
+
+.nav-links a {
+  color: #e0f8e9;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #50c878;
+}
+
+/* === Responsive Mobile Nav Menu [ADDED] === */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.95);
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+}
+
+/* Menu icon styling */
+.menu-icon {
+  display: block !important;
+  width: 40px;
+  z-index: 999;
+  background-color: red; /* temp highlight to locate it */
+}
+
+
+.menu-icon:hover {
+  transform: scale(1.05);
+}
+
+/* === Hero Section === */
+.home-hero {
+  height: 100vh;
+  background-image: url('/images/homepageimage.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 150px;
+  text-align: center;
+  animation: heroFadeIn 1.8s ease-in-out forwards;
+  opacity: 0;
+  color: white;
+}
+
+.home-hero .overlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-logo {
+  width: 200px;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 15px #50c878cc);
+  animation: fadeIn 2s ease-in;
+}
+
+.home-hero h1 {
+  margin: 0;
+  font-size: 3.5rem;
+  color: #50c878;
+  animation: moveUpFadeIn 1.5s ease forwards;
+}
+
+.home-hero p {
+  font-size: 1.3rem;
+  margin-top: 10px;
+  color: #e0f8e9;
+  animation: moveUpFadeIn 1.5s ease forwards;
+  animation-delay: 0.3s;
+}
+
+/* === Scroll Section === */
+.home-scroll {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  padding: 80px 40px;
+  background: linear-gradient(to right, #001f1f, #003f3f);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scroll-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.home-scroll .overlay {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.home-scroll.show .overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Text Column */
+.scroll-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.scroll-text h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, #50c878, #8be58b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.scroll-text p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Button */
+.home-btn {
+  background-color: #50c878;
+  color: #083c4f;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(80, 200, 120, 0.4);
+  transition: all 0.3s ease-in-out;
+  display: inline-block;
+  width: 220px;
+  text-align: center;
+}
+
+.home-btn:hover {
+  background-color: #3aa35b;
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #50c878, 0 0 30px #50c878;
+}
+
+/* Image Column */
+.scroll-image {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.scroll-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 30px #50c87844;
+  animation: moveUpFadeIn 1.5s ease forwards;
+}
+
+/* === Team Section === */
+.team-section {
+  padding: 60px 20px;
+  text-align: center;
+  background: linear-gradient(to right, #001f1f, #003f3f);
+  color: #fff;
+}
+
+.team-title {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+}
+
+.team-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  position: relative;
+  height: 360px;
+}
+
+.team-card.top {
+  width: 150px;
+  text-align: center;
+  position: absolute;
+  top: 0;
+}
+
+.team-card.top:nth-child(1) { left: 0; }
+.team-card.top:nth-child(2) { left: calc(50% - 75px); }
+.team-card.top:nth-child(3) { right: 0; }
+
+.team-card.bottom {
+  width: 150px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+}
+
+.team-card.bottom:nth-child(4) { left: 25%; }
+.team-card.bottom:nth-child(5) { right: 25%; }
+
+.team-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #33ff99;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.team-img:hover {
+  transform: scale(1.05);
+}
+
+.team-card h3 {
+  margin: 15px 0 5px;
+  font-size: 1.2rem;
+}
+
+.team-card p {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* === Animations === */
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 15px #50c878, 0 0 30px #50c878; }
+  to   { box-shadow: 0 0 25px #50c878, 0 0 50px #50c878; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroFadeIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes moveUpFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Additional team row layout */
+.team-row {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  max-width: 900px;
+  margin: 0 auto 40px auto;
+}
+
+.team-card {
+  width: 150px;
+  text-align: center;
+}
+
+.team-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 3px solid #33ff99;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  box-shadow: 0 0 15px #50c878bb;
+}
+
+.team-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #50c878, 0 0 40px #50c878;
+}
+
+.team-card h3 {
+  margin: 15px 0 5px;
+  font-size: 1.2rem;
+}
+
+.team-card p {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.menu-icon {
+  display: none;
+  width: 30px;
+  cursor: pointer;
+}
+
+/* Show menu icon on small screens */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 10px;
+    border-radius: 8px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+
+/* Slide-in menu overlay */
+.slide-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 250px;
+  height: 100vh;
+  background-color: rgba(15, 15, 15, 0.95);
+  color: #fff;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: right 0.4s ease;
+}
+
+.slide-menu-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
+
+.slide-menu-content a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.slide-menu-content a:hover {
+  transform: scale(1.05);
+  color: #00ffcc;
+}
+
+.slide-menu.active {
+  right: 0;
+}
+
+.slide-menu {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 250px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: right 0.3s ease;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.slide-menu.show {
+  right: 0;
+}
+
+.slide-menu-content a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  margin: 15px 0;
+  display: block;
+}
+
+.content-section {
+  margin-top: 100px; /* or padding-top: 100px */
+}
+
+.page-top-offset {
+  padding-top: 120px; /* or adjust depending on header height */
+}
+
+
+.content-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.content-block.reverse {
+  flex-direction: row-reverse;
+}
+
+.content-block .text {
+  flex: 1;
+  min-width: 300px;
+  text-align: left;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.content-block .image {
+  flex: 1;
+  min-width: 300px;
+  text-align: center;
+}
+
+.content-block .image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.scroll-section {
+  display: flex;
+  justify-content: center;
+  padding: 80px 20px;
+  background: linear-gradient(to right, #001f1f, #003f3f);
+}
+
+.scroll-overlay {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  width: 100%;
+  box-sizing: border-box; /* ✅ Ensures padding doesn't add to width */
+}
+
+.content-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.content-text {
+  flex: 1;
+  text-align: left;
+}
+
+.content-image {
+  flex: 1;
+  text-align: center;
+}
+
+.content-image img {
+  max-width: 100%;
+  border-radius: 12px;
+}
+
+.scroll-heading {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+
+.scroll-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px;
+  background-color: #f0f4f8;
+}
+
+.content-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+  margin-bottom: 80px;
+  flex-wrap: wrap;
+}
+
+.content-text {
+  flex: 1;
+  text-align: left;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.content-image {
+  flex: 1;
+  text-align: center;
+}
+
+.content-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+
+.scroll-heading {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+
+.small-image {
+  max-width: 75%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Target the second image wrapper to limit its width */
+.smaller-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px; /* Or any size you prefer */
+}
+
+/* Target the actual image */
+.smaller-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+
+.overlay-block {
+  background: rgba(255, 255, 255, 0.07); /* Soft white overlay */
+  border-radius: 20px;
+  padding: 40px;
+  margin: 40px 5%;
+  box-shadow:
+    0 0 15px rgba(0, 255, 128, 0.15),   /* green outer glow */
+    0 0 30px rgba(0, 255, 128, 0.05);   /* extended soft glow */
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(0, 255, 128, 0.2); /* subtle glowing border */
+  transition: box-shadow 0.3s ease;
+}
+
+.overlay-block:hover {
+  box-shadow:
+    0 0 20px rgba(0, 255, 128, 0.25),
+    0 0 40px rgba(0, 255, 128, 0.1);
+  border-color: rgba(0, 255, 128, 0.3);
+}
+
+
+.scroll-heading {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #fff; /* Or your theme color */
+}
+
+.content-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.content-text {
+  flex: 1;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #eaeaea;
+}
+
+.content-image img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* For the smaller Vision image */
+.smaller-image {
+  max-width: 400px;
+}
+.smaller-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}

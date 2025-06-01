@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PowerSprout Home</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="home-body">
+  <header class="main-header">
+    <a href="/" class="logo-link">
+      <img src="/images/logo.png" alt="PowerSprout Logo" class="navbar-logo" />
+    </a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="#about">About</a>
+    </nav>
+    <img src="/images/menu.png" alt="Menu Icon" class="menu-icon" id="menuToggle" />
+  </header>
+
+  <!-- Slide-in Menu -->
+  <div class="slide-menu" id="slideMenu">
+    <div class="slide-menu-content">
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/#about">About</a>
+      <a href="/vision">Vision</a>
+      <a href="/mission">Mission</a>
+    </div>
+  </div>
+
+  <section class="scroll-section">
+
+    <!-- Problem Statement Overlay -->
+    <div class="overlay-block">
+      <h1 class="scroll-heading">Problem Statement</h1>
+      <div class="content-row">
+        <div class="content-text">
+          <p>
+            The UAE generates over 3.27 million tonnes of food waste annually—translating into a staggering $3.5 billion in losses. When dumped into landfills, this waste anaerobically decomposes, releasing methane, a gas 25x more potent than CO₂, accelerating climate change.
+            <br><br>
+            Despite the UAE’s progressive smart city goals, real-time, IoT-enabled bioconversion technologies like Microbial Fuel Cells (MFCs) remain largely untapped. This creates a critical gap in sustainable energy innovation from organic waste at scale.
+          </p>
+        </div>
+        <div class="content-image">
+          <img src="images/3.27 million waste.png" alt="Food Waste Problem" class="section-image" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Vision Overlay -->
+    <div class="overlay-block">
+      <h1 class="scroll-heading">Our Vision</h1>
+        <div class="content-overlay">
+          <div class="content-row">
+            <div class="content-text">
+              <p>
+                To revolutionize how the world sees food waste—not as garbage, but as a renewable energy resource. At PowerSprout, we envision a future where food scraps fuel clean electricity through smart Microbial Fuel Cells, monitored by scalable IoT systems.
+                <br><br>
+                Our mission is to power entire campuses, communities, and eventually cities—starting in the UAE—by transforming bulk food waste into storable, sensor-driven energy. We aim to lead the shift toward sustainable, carbon-conscious living, one waste-powered system at a time.
+              </p>
+            </div>
+            <div class="content-image">
+              <img src="images/vision_picture.png" alt="Our Vision" class="section-image" />
+            </div>
+          </div>
+        </div>
+    </div>
+
+  </section>
+
+  <script>
+    const menuIcon = document.getElementById('menuToggle');
+    const slideMenu = document.getElementById('slideMenu');
+
+    menuIcon.addEventListener('click', () => {
+      slideMenu.classList.toggle('show');
+    });
+
+    slideMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        slideMenu.classList.remove('show');
+      });
+    });
+  </script>
+</body>
+</html>

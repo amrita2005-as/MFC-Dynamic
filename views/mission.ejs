@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PowerSprout Home</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="home-body">
+  <header class="main-header">
+    <a href="/" class="logo-link">
+      <img src="/images/logo.png" alt="PowerSprout Logo" class="navbar-logo" />
+    </a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="#about">About</a>
+    </nav>
+    <img src="/images/menu.png" alt="Menu Icon" class="menu-icon" id="menuToggle" />
+  </header>
+
+  <!-- Slide-in Menu -->
+  <div class="slide-menu" id="slideMenu">
+    <div class="slide-menu-content">
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/#about">About</a>
+      <a href="/vision">Vision</a>
+      <a href="/mission">Mission</a>
+    </div>
+  </div>
+
+  <section class="scroll-section">
+
+    <!-- Solution Overlay -->
+    <div class="overlay-block">
+      <h1 class="scroll-heading">Our Solution</h1>
+      <div class="content-row">
+        <div class="content-text">
+          <p>
+            PowerSprout is an IoT-powered, single-chamber Microbial Fuel Cell (MFC) designed for large-scale deployment. By combining electrogenic bacteria and a network of smart sensors, it turns food waste into clean, storable energy.
+            🔁 How it works:
+            <ol>
+              <li>Bacteria decompose food waste in an anaerobic chamber.</li>
+              <li>Electrons released travel through a circuit, generating electricity at the air cathode.</li>
+              <li>Electricity is stored in a supercapacitor for efficient, scalable usage.</li>
+              <li>IoT sensors monitor voltage, gas release, temperature, pH, microbial health & system load in real time.</li>
+            </ol>
+          </p>
+        </div>
+        <div class="content-image">
+          <img src="/images/solution_pic.png" alt="Food Waste Problem" class="section-image" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Mision Overlay -->
+    <div class="overlay-block">
+      <h1 class="scroll-heading">Our Mission</h1>
+        <div class="content-overlay">
+          <div class="content-row">
+            <div class="content-text">
+              <p>
+                To develop and deploy smart, scalable MFC systems that transform food waste into energy across municipal, industrial, and institutional levels.
+                <br><br>
+                We aim to make decentralized bioelectricity not just possible—but practical, affordable, and measurable. Every spoiled meal, leftover, and peel becomes a spark of sustainable power.
+              </p>
+            </div>
+            <div class="content-image">
+              <img src="/images/mission_pic.png" alt="Our Vision" class="section-image" />
+            </div>
+          </div>
+        </div>
+    </div>
+
+  </section>
+
+  <script>
+    const menuIcon = document.getElementById('menuToggle');
+    const slideMenu = document.getElementById('slideMenu');
+
+    menuIcon.addEventListener('click', () => {
+      slideMenu.classList.toggle('show');
+    });
+
+    slideMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        slideMenu.classList.remove('show');
+      });
+    });
+  </script>
+</body>
+</html>

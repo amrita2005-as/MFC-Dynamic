@@ -10,15 +10,14 @@ const port = 3000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// PostgreSQL client setup
+// PostgreSQL setup
 const db = new pg.Client({
   user: "postgres",
   host: "localhost",
   database: "MFC",
-  password: "IloveVAV", // 🔒 Consider moving this to environment variables!
+  password: "admin123",
   port: 5432,
 });
-
 db.connect();
 
 // Middleware
@@ -27,29 +26,27 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
-// Home route
+// Routes
 app.get("/", (req, res) => {
+  res.render("home");
+});
+
+app.get("/index", (req, res) => {
   res.render("index", { title: "MFC Monitoring" });
 });
 
-// Dashboard route
 app.get("/dashboard", async (req, res) => {
   try {
     const result = await db.query("SELECT * FROM mfc_monitoring");
 
     const timeMap = new Map();
-
     result.rows.forEach(row => {
       const timeLabel = new Date(row.timestamp).toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
       });
-
       if (!timeMap.has(timeLabel)) {
         timeMap.set(timeLabel, { Sensor1: null, Sensor2: null, Sensor3: null });
       }
-
       timeMap.get(timeLabel)[row.sensor_name] = row.sensor_value;
     });
 
@@ -85,6 +82,15 @@ app.get("/dashboard", async (req, res) => {
   }
 });
 
+// ✅ New Routes for Vision and Mission
+app.get("/vision", (req, res) => {
+  res.render("vision");
+});
+
+app.get("/mission", (req, res) => {
+  res.render("mission");
+});
+
 app.listen(port, () => {
-  console.log(`✅ Server is running at: http://localhost:${port}`);
+  console.log(`✅ Server running at http://localhost:${port}`);
 });

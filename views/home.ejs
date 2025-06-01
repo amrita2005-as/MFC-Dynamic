@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PowerSprout Home</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body class="home-body">
+    <header class="main-header">
+      <a href="/" class="logo-link">
+        <img src="/images/logo.png" alt="PowerSprout Logo" class="navbar-logo" />
+      </a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="#about">About</a>
+      </nav>
+      <img src="/images/menu.png" alt="Menu Icon" class="menu-icon" id="menuToggle" />
+    </header>
+
+    <!-- Slide-in Menu -->
+    <div class="slide-menu" id="slideMenu">
+      <div class="slide-menu-content">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="#about">About</a>
+        <a href="/vision">Vision</a>
+        <a href="/mission">Mission</a>
+        <a href="#team">Team</a>
+      </div>
+    </div>
+
+  <section class="home-hero">
+    <div class="overlay">
+      <img src="/images/logo.png" alt="PowerSprout Logo" class="home-logo" />
+      <h1>PowerSprout</h1>
+      <p>IoT-Driven Microbial Fuel Cell for Waste-to-Energy</p>
+    </div>
+  </section>
+
+  <section class="home-scroll" id="about">
+    <div class="scroll-content">
+      <div class="scroll-text">
+        <h2>About PowerSprout</h2>
+        <p>
+          PowerSprout is an innovative, IoT-enabled Microbial Fuel Cell (MFC) system that converts food waste into clean electricity. Designed as a sustainable waste-to-energy solution, PowerSprout uses electrogenic bacteria to break down organic matter in an anaerobic chamber, releasing electrons captured to generate power. With real-time monitoring via sensors and energy stored in a supercapacitor, it offers smart, low-carbon energy generation ideal for eco-conscious communities and smart city initiatives.
+        </p>
+        <a href="/dashboard" class="home-btn">Explore Dashboard</a>
+      </div>
+      <div class="scroll-image">
+        <img src="/images/mfc_model.jpg" alt="PowerSprout MFC" />
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section" id="team">
+    <h1 class="team-title">Meet Our Team</h1>
+    <div class="team-row top-row">
+      <div class="team-card">
+        <img src="/images/us.jpg" alt="Team Member" class="team-img" />
+        <h3>Vanshika Choube</h3>
+        <p>Project Lead</p>
+      </div>
+      <div class="team-card">
+        <img src="/images/us.jpg" alt="Team Member" class="team-img" />
+        <h3>Amritaa Shankar</h3>
+        <p>Hardware Engineer</p>
+      </div>
+      <div class="team-card">
+        <img src="/images/us.jpg" alt="Team Member" class="team-img" />
+        <h3>Varenya Chivukula</h3>
+        <p>Software Developer</p>
+      </div>
+    </div>
+
+    <div class="team-row bottom-row">
+      <div class="team-card">
+        <img src="/images/us.jpg" alt="Team Member" class="team-img" />
+        <h3>Sri Sruti</h3>
+        <p>Data Analyst</p>
+      </div>
+      <div class="team-card">
+        <img src="/images/jose.jpg" alt="Team Member" class="team-img" />
+        <h3>Jose Rojo</h3>
+        <p>Designer</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Scripts -->
+  <script>
+    const menuIcon = document.getElementById('menuToggle');
+    const slideMenu = document.getElementById('slideMenu');
+
+    menuIcon.addEventListener('click', () => {
+      slideMenu.classList.toggle('show');
+    });
+
+    // ✅ Close menu when any link inside the slide-menu is clicked
+    slideMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        slideMenu.classList.remove('show');
+
+        // If the link is a hash link (like #about), manually scroll to it
+        const href = link.getAttribute('href');
+        if (href.startsWith('#')) {
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault(); // Stop default jump
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+  </script>
+
+
+</body>
+</html>
