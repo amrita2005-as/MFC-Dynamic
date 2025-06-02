@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>PowerSprout Home</title>
+  <title>PowerSprout Mission</title>
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body class="home-body">
@@ -13,26 +13,27 @@
     <nav class="nav-links">
       <a href="/">Home</a>
       <a href="/dashboard">Dashboard</a>
-      <a href="#about">About</a>
+      <a href="/#about">About</a>
     </nav>
     <img src="/images/menu.png" alt="Menu Icon" class="menu-icon" id="menuToggle" />
   </header>
 
   <!-- Slide-in Menu -->
   <div class="slide-menu" id="slideMenu">
-    <div class="slide-menu-content">
-      <a href="/">Home</a>
-      <a href="/dashboard">Dashboard</a>
-      <a href="/#about">About</a>
-      <a href="/vision">Vision</a>
-      <a href="/mission">Mission</a>
+      <div class="slide-menu-content">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/#about">About</a>
+        <a href="/vision">Vision</a>
+        <a href="/mission">Mission</a>
+        <a href="/#team">Team</a>
+        <a href="/iot">IOT</a>
+      </div>
     </div>
-  </div>
 
   <section class="scroll-section">
-
     <!-- Solution Overlay -->
-    <div class="overlay-block">
+    <div class="overlay-block slide-up">
       <h1 class="scroll-heading">Our Solution</h1>
       <div class="content-row">
         <div class="content-text">
@@ -48,30 +49,29 @@
           </p>
         </div>
         <div class="content-image">
-          <img src="/images/solution_pic.png" alt="Food Waste Problem" class="section-image" />
+          <img src="/images/solution_pic.png" alt="Our Solution" class="section-image" />
         </div>
       </div>
     </div>
 
-    <!-- Mision Overlay -->
-    <div class="overlay-block">
+    <!-- Mission Overlay -->
+    <div class="overlay-block slide-up-on-scroll" id="mission-section">
       <h1 class="scroll-heading">Our Mission</h1>
-        <div class="content-overlay">
-          <div class="content-row">
-            <div class="content-text">
-              <p>
-                To develop and deploy smart, scalable MFC systems that transform food waste into energy across municipal, industrial, and institutional levels.
-                <br><br>
-                We aim to make decentralized bioelectricity not just possible—but practical, affordable, and measurable. Every spoiled meal, leftover, and peel becomes a spark of sustainable power.
-              </p>
-            </div>
-            <div class="content-image">
-              <img src="/images/mission_pic.png" alt="Our Vision" class="section-image" />
-            </div>
+      <div class="content-overlay">
+        <div class="content-row">
+          <div class="content-text">
+            <p>
+              To develop and deploy smart, scalable MFC systems that transform food waste into energy across municipal, industrial, and institutional levels.
+              <br><br>
+              We aim to make decentralized bioelectricity not just possible—but practical, affordable, and measurable. Every spoiled meal, leftover, and peel becomes a spark of sustainable power.
+            </p>
+          </div>
+          <div class="content-image">
+            <img src="/images/mission_pic.png" alt="Our Mission" class="section-image" />
           </div>
         </div>
+      </div>
     </div>
-
   </section>
 
   <script>
@@ -87,6 +87,23 @@
         slideMenu.classList.remove('show');
       });
     });
+
+    // Scroll-triggered animation for the Mission section
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // Run only once
+        }
+      });
+    }, {
+      threshold: 0.3
+    });
+
+    const missionSection = document.querySelector('#mission-section');
+    if (missionSection) {
+      observer.observe(missionSection);
+    }
   </script>
 </body>
 </html>

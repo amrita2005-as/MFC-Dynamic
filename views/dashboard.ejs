@@ -1,104 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="/styles.css">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sensor Dashboard</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0a1f11;
-      color: #d5e8d4;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      align-items: center;
-      padding: 40px 20px;
-      box-sizing: border-box;
-    }
-
-    header {
-      width: 100%;
-      background-color: #50c878;
-      color: #0a1f11;
-      font-weight: 700;
-      font-size: 2rem;
-      text-align: center;
-      padding: 20px 0;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(80, 200, 120, 0.5);
-      margin-bottom: 40px;
-    }
-
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      max-width: 900px;
-      background: #143820;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(80, 200, 120, 0.4);
-      margin-bottom: 50px;
-    }
-
-    th, td {
-      padding: 12px 15px;
-      text-align: left;
-      border-bottom: 1px solid #224822;
-    }
-
-    th {
-      background-color: #50C878;
-      color: #0a1f11;
-      font-weight: 700;
-    }
-
-    tr:nth-child(even) {
-      background-color: #1e3a23;
-    }
-
-    tr:hover {
-      background-color: #3aa35b;
-      color: #fff;
-      cursor: default;
-    }
-
-    #chart-container {
-      background-color: #143820;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(80, 200, 120, 0.4);
-      width: 100%;
-      max-width: 900px;
-      margin-bottom: 60px;
-    }
-
-    a {
-      margin-top: 30px;
-      color: #50C878;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1rem;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 600px) {
-      th, td {
-        padding: 10px 8px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/styles.css" />
 </head>
-<body>
-  <header>Sensor Monitoring Dashboard</header>
+<body class="dashboard-body">
+  <!-- Main Header -->
+  <header class="main-header">
+    <a href="/" class="logo-link">
+      <img src="/images/logo.png" alt="PowerSprout Logo" class="navbar-logo" />
+    </a>
+    <nav class="nav-links">
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/#about">About</a>
+    </nav>
+    <img src="/images/menu.png" alt="Menu Icon" class="menu-icon" id="menuToggle" />
+  </header>
 
-  <!-- Table Section -->
-  <table>
+  <!-- Slide-in Menu -->
+  <div class="slide-menu" id="slideMenu">
+      <div class="slide-menu-content">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/#about">About</a>
+        <a href="/vision">Vision</a>
+        <a href="/mission">Mission</a>
+        <a href="/#team">Team</a>
+        <a href="/iot">IOT</a>
+      </div>
+    </div>
+
+  <!-- Dashboard Heading -->
+  <h1 class="dashboard-heading">Sensor Monitoring Dashboard</h1>
+
+  <!-- Table -->
+  <table class="dashboard-table">
     <thead>
       <tr>
         <th>Sensor</th>
@@ -117,13 +56,14 @@
     </tbody>
   </table>
 
-  <!-- Graph Section -->
+  <!-- Graph -->
   <section id="chart-container">
     <canvas id="sensorChart" width="900" height="400"></canvas>
   </section>
 
-  <a href="/">← Back to Welcome</a>
+  <a href="/" class="dashboard-back-link">← Back to Welcome</a>
 
+  <!-- Chart.js Script -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     const ctx = document.getElementById('sensorChart').getContext('2d');
@@ -165,10 +105,7 @@
 
     const config = {
       type: 'bar',
-      data: {
-        labels: labels,
-        datasets: datasets
-      },
+      data: { labels, datasets },
       options: {
         responsive: true,
         animation: {
@@ -177,31 +114,15 @@
         },
         scales: {
           x: {
-            title: {
-              display: true,
-              text: 'Time',
-              color: '#c6e2c6'
-            },
-            ticks: {
-              color: '#d5e8d4'
-            },
-            grid: {
-              color: 'rgba(80, 200, 120, 0.2)'
-            }
+            title: { display: true, text: 'Time', color: '#c6e2c6' },
+            ticks: { color: '#d5e8d4' },
+            grid: { color: 'rgba(80, 200, 120, 0.2)' }
           },
           y: {
             beginAtZero: true,
-            title: {
-              display: true,
-              text: 'Sensor Value',
-              color: '#c6e2c6'
-            },
-            ticks: {
-              color: '#d5e8d4'
-            },
-            grid: {
-              color: 'rgba(80, 200, 120, 0.2)'
-            }
+            title: { display: true, text: 'Sensor Value', color: '#c6e2c6' },
+            ticks: { color: '#d5e8d4' },
+            grid: { color: 'rgba(80, 200, 120, 0.2)' }
           }
         },
         plugins: {
@@ -215,16 +136,23 @@
               }
             }
           },
-          legend: {
-            labels: {
-              color: '#c6e2c6'
-            }
-          }
+          legend: { labels: { color: '#c6e2c6' } }
         }
       }
     };
 
     new Chart(ctx, config);
+
+    // Slide menu toggle
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      document.getElementById('slideMenu').classList.toggle('show');
+    });
+
+    document.querySelectorAll('.slide-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('slideMenu').classList.remove('show');
+      });
+    });
   </script>
 </body>
 </html>

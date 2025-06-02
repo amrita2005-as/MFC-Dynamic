@@ -42,7 +42,9 @@ app.get("/dashboard", async (req, res) => {
     const timeMap = new Map();
     result.rows.forEach(row => {
       const timeLabel = new Date(row.timestamp).toLocaleTimeString([], {
-        hour: '2-digit', minute: '2-digit', second: '2-digit'
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
       });
       if (!timeMap.has(timeLabel)) {
         timeMap.set(timeLabel, { Sensor1: null, Sensor2: null, Sensor3: null });
@@ -82,13 +84,19 @@ app.get("/dashboard", async (req, res) => {
   }
 });
 
-// ✅ New Routes for Vision and Mission
+// Vision page
 app.get("/vision", (req, res) => {
   res.render("vision");
 });
 
+// Mission page
 app.get("/mission", (req, res) => {
   res.render("mission");
+});
+
+// IOT
+app.get("/iot", (req, res) => {
+  res.render("iot");
 });
 
 app.listen(port, () => {

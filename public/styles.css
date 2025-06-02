@@ -635,8 +635,8 @@ body {
   padding: 40px;
   margin: 40px 5%;
   box-shadow:
-    0 0 15px rgba(0, 255, 128, 0.15),   /* green outer glow */
-    0 0 30px rgba(0, 255, 128, 0.05);   /* extended soft glow */
+    0 0 50px rgba(0, 255, 128, 0.15),   /* green outer glow */
+    0 0 50px rgba(0, 255, 128, 0.05);   /* extended soft glow */
   backdrop-filter: blur(4px);
   border: 1px solid rgba(0, 255, 128, 0.2); /* subtle glowing border */
   transition: box-shadow 0.3s ease;
@@ -687,4 +687,390 @@ body {
   width: 100%;
   height: auto;
   object-fit: contain;
+}
+
+
+
+
+/* Dashboard.ejs css*/
+/* === DASHBOARD STYLES === */
+
+/* Dashboard Page Body */
+body.dashboard-body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #001f1f, #003f3f);
+  color: #d5e8d4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 120px 20px 40px;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+
+/* Dashboard Heading */
+.dashboard-heading {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #80ffaa;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* Dashboard Table */
+.dashboard-table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 900px;
+  background: #1f4a2e;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(80, 200, 120, 0.4);
+  margin-bottom: 50px;
+}
+
+.dashboard-table th,
+.dashboard-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #224822;
+}
+
+.dashboard-table th {
+  background-color: #50C878;
+  color: #0a1f11;
+  font-weight: 700;
+}
+
+.dashboard-table tr:nth-child(even) {
+  background-color: #1e3a23;
+}
+
+.dashboard-table tr:hover {
+  background-color: #3aa35b;
+  color: #fff;
+  cursor: default;
+}
+
+/* Chart Container */
+#chart-container {
+  background-color: #143820;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(80, 200, 120, 0.4);
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 60px;
+}
+
+/* Back Link */
+.dashboard-back-link {
+  margin-top: 30px;
+  color: #50C878;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.dashboard-back-link:hover {
+  text-decoration: underline;
+}
+
+
+.dashboard-heading .h1{
+  margin-top:30px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .dashboard-table th,
+  .dashboard-table td {
+    padding: 10px 8px;
+  }
+
+  .dashboard-heading {
+    font-size: 2rem;
+  }
+
+}
+
+
+@keyframes slideUpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUpFadeIn 1.2s ease-out forwards;
+}
+
+
+.iot-main {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 1rem;
+  text-align: center;
+  position: relative;
+}
+
+.iot-heading {
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: -1rem;
+  color: #dcede0;
+}
+
+.iot-diagram-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 900px;
+}
+
+.iot-image {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 255, 100, 0.2);
+}
+
+.sensor-label {
+  position: absolute;
+  background-color: rgba(0, 128, 0, 0.85);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  transition: background-color 0.3s;
+}
+
+.sensor-label:hover {
+  background-color: rgba(0, 128, 0, 1);
+}
+
+.sensor-label .tooltip {
+  display: none;
+  position: absolute;
+  top: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  width: 220px;
+  z-index: 99;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.sensor-label:hover .tooltip {
+  display: block;
+}
+
+.sensor-label .tooltip {
+  display: none;
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  white-space: normal;
+  width: 220px;
+  z-index: 100;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.sensor-label {
+  transition: background-color 0.3s ease;
+  pointer-events: auto;
+}
+
+.iot-image {
+  width: 100%;
+  max-width: 600px; /* Reduced from 900px or higher */
+  display: block;
+  margin: 0 auto;
+}
+
+.iot-diagram-container {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.iot-image {
+  width: 100%;
+  max-width: 600px; /* Image size reduced */
+  display: block;
+  margin: 0 auto;
+}
+
+.sensor-label {
+  position: absolute;
+  background:  rgba(7, 97, 63, 0.85);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sensor-label .tooltip {
+  display: none;
+  position: absolute;
+  background: rgba(93, 242, 185, 0.85);
+  padding: 10px;
+  border-radius: 6px;
+  top: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.85rem;
+  z-index: 10;
+}
+
+.sensor-label:hover .tooltip {
+  display: block;
+}
+
+/* Adjusted and New Sensor Positions */
+.sensor1 { top: 42%; left: 32%; } /*pH Sensor*/
+.sensor2 { top: 15%; right: 12%; } /*Gas Sensor*/
+.sensor3 { top: 15%; left: 15%; } /*LCD*/
+.sensor4 { top: 35%; left: 58%; }/* Temperature Sensor */
+.sensor5 { top: 55%; right: 8%; } /* Air Cathode */
+.sensor6 { top: 55%; left: 58%; }  /* Anode sensor */
+.sensor7 { bottom: 10%; left: 50%; } /* Breadboard */
+.sensor8 { top: 10%; left: 40%; } /* Buzzer */
+.sensor9 { bottom: 20%; left: 35%; } /* Weight Sensor */
+.sensor10 { top: 75%; right: 5%; } /* Super Capacitor */
+
+/* Fade-in upward animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply to main container */
+.iot-main {
+  opacity: 0;
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+
+/* Footer Styling */
+.site-footer {
+  background-color: #0b1d1a; /* dark like header */
+  color: #cde4d3;
+  text-align: center;
+  padding: 30px 0;
+  font-size: 0.9rem;
+}
+
+.site-footer a {
+  color: #cde4d3;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.site-footer hr {
+  border: 0;
+  border-top: 1px solid #2c3e3a;
+  margin: 15px auto;
+  width: 80%;
+}
+
+.site-footer .copyright {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+.footer-links {
+  margin-bottom: 10px;
+}
+
+
+.footer-links a:hover {
+  color: #b7ffcb;
+}
+
+
+.sensor-popup {
+  display: none;
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1e1e2f;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  max-width: 180px;
+  width: max-content;
+  text-align: center;
+  white-space: normal;
+  word-wrap: break-word;
+  z-index: 100;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+}
+
+.sensor:hover .sensor-popup {
+  display: block;
+}
+
+
+.sensor-label .tooltip {
+  position: absolute;
+  bottom: -70px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%);
+  display: block; /* ✅ make span behave like a box */
+  background-color: #1e1e2f;
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  max-width: 200px;
+  width: max-content;
+  white-space: normal;          /* ✅ wrap text */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.sensor-label:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
 }
