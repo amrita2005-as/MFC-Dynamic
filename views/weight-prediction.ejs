@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: #f7f4f1;
+      color: #3a3a3a;
+      padding: 2rem;
+    }
+    h1 {
+      color: #2c6f4f;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(44, 111, 79, 0.2);
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    .section h2 {
+      color: #2c6f4f;
+      border-bottom: 2px solid #2c6f4f;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.75rem;
+      text-align: center;
+    }
+    th {
+      background-color: #e3f1df;
+      color: #2c6f4f;
+    }
+    .prediction {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #1b4d3e;
+      text-align: center;
+      background: #d2e9d9;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .back-link a {
+      color: #2c6f4f;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><%= title %></h1>
+
+    <div class="section">
+      <h2>Your Input</h2>
+      <table>
+        <tr>
+          <th>Device</th>
+          <td><%= input.device %></td>
+        </tr>
+        <tr>
+          <th>Duration (minutes)</th>
+          <td><%= input.duration_minutes %></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Estimated Food Waste Weight</h2>
+      <div class="prediction">
+        <% if (prediction && prediction.weight_kg !== undefined) { %>
+          <%= prediction.weight_kg.toFixed(2) %> kg
+        <% } else { %>
+          Unable to calculate prediction
+        <% } %>
+      </div>
+    </div>
+
+    <% if (sensorData && sensorData.length) { %>
+    <div class="section">
+      <h2>Recent Sensor Data (Last 10 Entries)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Sensor Name</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% sensorData.forEach(data => { %>
+            <tr>
+              <td><%= data.sensor_name %></td>
+              <td><%= data.sensor_value %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+    <% } %>
+
+    <div class="back-link">
+      <a href="/weight-prediction">← Back to Weight Estimator</a>
+    </div>
+  </div>
+</body>
+</html>

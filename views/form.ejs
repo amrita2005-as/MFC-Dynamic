@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: #f0f7f2;
+      padding: 2rem;
+      color: #2d2d2d;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(44, 111, 79, 0.2);
+    }
+    h1 {
+      text-align: center;
+      color: #2c6f4f;
+      margin-bottom: 1.5rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin: 1rem 0 0.3rem;
+      font-weight: bold;
+    }
+    select, input[type="number"] {
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 2rem;
+      background-color: #2c6f4f;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #1e4d3a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Estimate Food Waste Weight</h1>
+    <form action="/predict-weight" method="POST">
+      <label for="device">Select Device</label>
+      <select id="device" name="device" required>
+        <option value="bulb">LED Bulb (9W)</option>
+        <option value="fan">Fan (50W)</option>
+        <option value="laptop">Laptop (60W)</option>
+        <option value="tv">TV (100W)</option>
+        <option value="fridge">Fridge (150W)</option>
+      </select>
+
+      <label for="duration_minutes">Usage Time (in minutes)</label>
+      <input type="number" id="duration_minutes" name="duration_minutes" min="1" required />
+
+      <button type="submit">Estimate</button>
+    </form>
+  </div>
+</body>
+</html>

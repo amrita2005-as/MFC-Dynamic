@@ -14,7 +14,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  padding: 10px 30px;
+  padding: 1px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -821,6 +821,7 @@ body.dashboard-body {
 }
 
 .iot-heading {
+  text-align: center;
   font-size: 2rem;
   margin-top: 2rem;
   margin-bottom: -1rem;
@@ -983,6 +984,7 @@ body.dashboard-body {
 }
 
 
+
 /* Footer Styling */
 .site-footer {
   background-color: #0b1d1a; /* dark like header */
@@ -1074,3 +1076,370 @@ body.dashboard-body {
   opacity: 1;
   visibility: visible;
 }
+
+
+
+/*Prediction Page Styling*/
+body {
+  background-color: #081c11;
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: #50c878;
+  padding: 15px 30px;
+  box-shadow: 0 4px 10px rgba(80, 200, 120, 0.4);
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+header p {
+  font-size: 1.2rem;
+  margin-top: 8px;
+  color: #e0ffe0;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+.card {
+  background-color: #143820;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(80, 200, 120, 0.3);
+  max-width: 700px;
+  width: 100%;
+}
+
+.card h2 {
+  color: #7fffd4;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  color: white;
+}
+
+ul li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+canvas {
+  margin-top: 20px;
+}
+
+a {
+  color: #50c878;
+  text-decoration: none;
+  margin-top: 25px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+a:hover {
+  color: #7fffd4;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 20px;
+  }
+}
+:root {
+  --primary-bg: #081c11;
+  --secondary-bg: #143820;
+  --primary-color: #50c878;
+  --accent-color: #7fffd4;
+  --text-color: #ffffff;
+  --subtle-text-color: #e0ffe0;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--primary-bg);
+  color: var(--text-color);
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: var(--primary-color);
+  padding: 15px 30px;
+  box-shadow: 0 4px 10px rgba(80, 200, 120, 0.4);
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+header p {
+  font-size: 1.2rem;
+  margin-top: 8px;
+  color: var(--subtle-text-color);
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+.card {
+  background-color: var(--secondary-bg);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 0 25px var(--primary-color);
+  max-width: 700px;
+  width: 100%;
+}
+
+.card p{
+  color: white;
+}
+
+.card h2 {
+  color: var(--accent-color);
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+  color: var(--text-color);
+}
+
+ul li {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+canvas {
+  margin-top: 20px;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  margin-top: 25px;
+  display: inline-block;
+  font-weight: 600;
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 20px;
+  }
+}
+
+.iot-main {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out forwards;
+  animation-delay: 0.3s;
+}
+
+.iot-heading {
+  font-size: 2rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  color: #dcede0;
+  text-align: center;
+}
+
+.iot-diagram-container {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.iot-image {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 255, 100, 0.2);
+  display: block;
+  margin: 0 auto;
+}
+
+.sensor-label {
+  position: absolute;
+  background: rgba(7, 97, 63, 0.85);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sensor-label:hover .tooltip {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.sensor-label .tooltip {
+  position: absolute;
+  bottom: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(24, 42, 35, 0.85);
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  max-width: 200px;
+  width: max-content;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+/* Sensor positions */
+.sensor1 { top: 42%; left: 32%; }
+.sensor2 { top: 15%; right: 12%; }
+.sensor3 { top: 15%; left: 15%; }
+.sensor4 { top: 35%; left: 58%; }
+.sensor5 { top: 55%; right: 8%; }
+.sensor6 { top: 55%; left: 58%; }
+.sensor7 { bottom: 10%; left: 50%; }
+.sensor8 { top: 10%; left: 40%; }
+.sensor9 { bottom: 20%; left: 35%; }
+.sensor10 { top: 75%; right: 5%; }
+
+/* Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* powerbot floating */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 8px rgba(0, 255, 102, 0.6), 0 0 20px rgba(0, 255, 102, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 102, 0.9), 0 0 40px rgba(0, 255, 102, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(0, 255, 102, 0.6), 0 0 20px rgba(0, 255, 102, 0.4);
+  }
+}
+
+/* Wrapper fixes position */
+.floating-chat-wrapper {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  max-width: calc(100vw - 40px); /* leave some padding from viewport */
+  pointer-events: none; /* so only the button reacts to hover/click */
+}
+
+/* Button itself */
+.floating-chat-btn {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600; /* semi-bold */
+  position: relative; /* relative for tooltip absolute inside */
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  color: #003300;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto; /* allow clicking */
+  box-shadow: 0 0 10px rgba(0, 255, 102, 0.6);
+  transition: background-color 0.3s ease;
+}
+
+/* Tooltip - absolutely positioned within button */
+.floating-chat-btn .chat-tooltip {
+  position: absolute;
+  bottom: 70px; /* above the button */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #00ff66;
+  color: #003300;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  white-space: normal; /* allow wrapping */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 255, 102, 0.6);
+  max-width: 160px; /* smaller width for a nice bubble */
+  text-align: center;
+  line-height: 1.2em; /* tighter spacing between lines */
+  font-weight: 600;
+}
+
+/* Hover styles */
+.floating-chat-btn:hover {
+  background-color: #00cc55;
+  box-shadow: 0 0 20px rgba(0, 204, 85, 0.9);
+}
+
+.floating-chat-btn:hover .chat-tooltip {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+
